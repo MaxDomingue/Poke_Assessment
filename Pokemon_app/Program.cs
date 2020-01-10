@@ -14,7 +14,7 @@ namespace Pokemon_app
             API_client.InitPokeClient();
 
             string pokeName;
-            Console.WriteLine("Enter the name of the Pokemon you are searching for: ");
+            Console.Write("Enter the name of the Pokemon you are searching for: ");
             pokeName = Console.ReadLine();
 
             Pokemon pokemon = GetPokemon(pokeName).Result;
@@ -22,18 +22,35 @@ namespace Pokemon_app
 
             foreach (TypeData types in pokeTypes)
             {
+                Console.WriteLine();
                 Console.WriteLine($"Type: {types.name}");
+                Console.WriteLine();
                 foreach (NameData weakToTypes in types.damage_relations.double_damage_from)
                 {
-                    Console.WriteLine($"Weak To {weakToTypes.name}");
+                    Console.WriteLine($"Double Damage from: {weakToTypes.name}");
                 }
-
-                foreach (NameData strongAgainstTypes in types.damage_relations.double_damage_to)
+                foreach (NameData weakToTypes in types.damage_relations.half_damage_from)
                 {
-                    Console.WriteLine($"Strong Against {strongAgainstTypes.name}");
+                    Console.WriteLine($"Half Damage from: {weakToTypes.name}");
                 }
+                foreach (NameData weakToTypes in types.damage_relations.no_damage_from)
+                {
+                    Console.WriteLine($"No Damage from: {weakToTypes.name}");
+                }
+                foreach (NameData weakToTypes in types.damage_relations.double_damage_to)
+                {
+                    Console.WriteLine($"Double Damage to: {weakToTypes.name}");
+                }
+                foreach (NameData weakToTypes in types.damage_relations.half_damage_to)
+                {
+                    Console.WriteLine($"Half Damage from: {weakToTypes.name}");
+                }
+                foreach (NameData strongAgainstTypes in types.damage_relations.no_damage_to)
+                {
+                    Console.WriteLine($"No Damage to: {strongAgainstTypes.name}");
+                }
+                Console.WriteLine();
             }
-
             Console.ReadLine();
         }
 
@@ -88,7 +105,6 @@ namespace Pokemon_app
             public DamageRelationships damage_relations { get; set; }
             public string name { get; set; }
         }
-
 
         public class DamageRelationships
         {
