@@ -43,7 +43,7 @@ namespace Pokemon_app
                 }
                 foreach (NameData weakToTypes in types.damage_relations.half_damage_to)
                 {
-                    Console.WriteLine($"Half Damage from: {weakToTypes.name}");
+                    Console.WriteLine($"Half Damage to: {weakToTypes.name}");
                 }
                 foreach (NameData strongAgainstTypes in types.damage_relations.no_damage_to)
                 {
